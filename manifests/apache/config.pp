@@ -43,7 +43,7 @@ define php::apache::config(
     $file_real = $php::apache::params::inifile
   }
 
-  php::config { $title:
+  php::config { "apache/$title":
     ensure  => $ensure,
     file    => $file_real,
     config  => $config,

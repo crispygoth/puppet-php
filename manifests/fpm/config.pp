@@ -38,7 +38,7 @@ define php::fpm::config(
 ) {
   include ::php::fpm::params
 
-  php::config { $title:
+  php::config { "fpm/$title":
     ensure  => $ensure,
     file    => $file,
     config  => $config,

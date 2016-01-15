@@ -35,7 +35,7 @@ define php::cli::config(
   $value    = undef,
 ) {
 
-  php::config { $title:
+  php::config { "cli/$title":
     file    => $file,
     config  => $config,
     section => $section,
