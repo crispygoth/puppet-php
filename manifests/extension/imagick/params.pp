@@ -41,11 +41,15 @@
 class php::extension::imagick::params {
 
   $ensure   = $php::params::ensure
-  $package  = 'php5-imagick'
   $provider = undef
   $inifile  = "${php::params::config_root_ini}/imagick.ini"
   $settings = [
     'set ".anon/extension" "imagick.so"'
   ]
 
+  if (versioncmp($php::params::major_version, "7") >= 0) {
+    $package  = 'php-imagick'
+  } else {
+    $package  = 'php5-imagick'
+  }
 }

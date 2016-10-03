@@ -42,11 +42,15 @@
 class php::extension::memcached::params {
 
   $ensure   = $php::params::ensure
-  $package  = 'php5-memcached'
   $provider = undef
   $inifile  = "${php::params::config_root_ini}/memcached.ini"
   $settings = [
     'set ".anon/extension" "memcached.so"'
   ]
 
+  if (versioncmp($php::params::major_version, "7") >= 0) {
+    $package  = 'php-memcached'
+  } else {
+    $package  = 'php5-memcached'
+  }
 }

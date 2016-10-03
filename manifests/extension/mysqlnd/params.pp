@@ -1,6 +1,7 @@
 # == Class: php::extension::mysqlnd::params
 #
 # Defaults file for the native driver mysqlnd PHP extension
+# Enabled by default in PHP > 7
 #
 # === Parameters
 #
@@ -47,5 +48,6 @@ class php::extension::mysqlnd::params {
   $settings = [
     'set ".anon/extension" "mysqlnd.so"'
   ]
-
+  # todo: should default to empty hash
+  $plugin_config = undef
 }

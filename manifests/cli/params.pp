@@ -41,9 +41,9 @@
 class php::cli::params {
 
   $ensure   = $php::params::ensure
-  $package  = 'php5-cli'
+  $package  = "php${php::params::major_version}-cli"
   $provider = undef
-  $inifile  = '/etc/php5/cli/php.ini'
+  $inifile  = "${php::params::config_root}/cli/php.ini"
   $settings = [ ]
 
 }

@@ -1,6 +1,6 @@
-# == Class: php::extension::redis::params
+# == Class: php::extension::tidy::params
 #
-# Defaults file for the redis PHP extension
+# Defaults file for the tidy PHP extension
 #
 # === Parameters
 #
@@ -10,7 +10,7 @@
 #
 # [*ensure*]
 #   The version of the package to install
-#   Could be "latest", "installed" or a pinned version
+#   Could be "latest", "installed", a pinned version or "absent"
 #   This matches "ensure" from Package
 #
 # [*package*]
@@ -33,23 +33,18 @@
 # === Authors
 #
 # Christian "Jippi" Winther <jippignu@gmail.com>
+# Goran Miskovic <schkovich@gmail.com>
 #
 # === Copyright
 #
 # Copyright 2012-2015 Christian "Jippi" Winther, unless otherwise noted.
 #
-class php::extension::redis::params {
+class php::extension::xmlrpc::params {
 
   $ensure   = $php::params::ensure
+  $package  = 'php5-xmlrpc'
   $provider = undef
-  $inifile  = "${php::params::config_root_ini}/redis.ini"
-  $settings = [
-    'set ".anon/extension" "redis.so"'
-  ]
+  $inifile  = "${php::params::config_root_ini}/xmlrpc.ini"
+  $settings = [ ]
 
-  if (versioncmp($php::params::major_version, "7") >= 0) {
-    $package  = 'php-redis'
-  } else {
-    $package  = 'php5-redis'
-  }
 }

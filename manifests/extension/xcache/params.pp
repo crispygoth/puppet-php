@@ -1,6 +1,7 @@
 # == Class: php::extension::xcache::params
 #
 # Defaults file for the Xcache PHP extension
+# No PHP 7
 #
 # === Parameters
 #

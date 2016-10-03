@@ -1,6 +1,7 @@
 # == Class: php::extension::newrelic::params
 #
 # Defaults file for the newrelic PHP extension
+# No support for PHP7 Yet.
 #
 # === Parameters
 #

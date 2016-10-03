@@ -26,10 +26,13 @@
 # Copyright 2012-2015 Christian "Jippi" Winther, unless otherwise noted.
 #
 class php::params {
-
+  $major_version = hiera("php::params::php_version", "5")
   $ensure = 'installed'
-
-  $config_root = '/etc/php5'
+  if (versioncmp($major_version, '7') >= 0) {
+    $config_root = "/etc/php/${major_version}"
+  } else {
+    $config_root = "/etc/php${major_version}"
+  }
 
   if $::php_version == '' or versioncmp($::php_version, '5.4') >= 0 {
     $config_root_ini = "${::php::params::config_root}/mods-available"
@@ -38,5 +41,4 @@ class php::params {
   }
 
   $augeas_contrib_dir = '/usr/share/augeas/lenses/contrib'
-
 }

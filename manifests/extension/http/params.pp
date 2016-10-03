@@ -41,11 +41,15 @@
 class php::extension::http::params {
 
   $ensure   = $php::params::ensure
-  $package  = 'php5-http'
   $provider = undef
   $inifile  = "${php::params::config_root_ini}/http.ini"
   $settings = [
     'set ".anon/extension" "http.so"'
   ]
 
+  if (versioncmp($php::params::major_version, "7") >= 0) {
+    $package  = 'php-http'
+  } else {
+    $package  = 'php5-http'
+  }
 }

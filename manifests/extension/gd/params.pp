@@ -41,7 +41,7 @@
 class php::extension::gd::params {
 
   $ensure   = $php::params::ensure
-  $package  = 'php5-gd'
+  $package  = "php${php::params::major_version}-gd"
   $provider = undef
   $inifile  = "${php::params::config_root_ini}/gd.ini"
   $settings = [

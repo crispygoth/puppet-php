@@ -41,11 +41,15 @@
 class php::extension::xdebug::params {
 
   $ensure      = $php::params::ensure
-  $package     = 'php5-xdebug'
   $provider    = undef
   $inifile     = "${php::params::config_root_ini}/xdebug.ini"
   $settings    = [
     'set ".anon/zend_extension" "xdebug.so"'
   ]
 
+  if (versioncmp($php::params::major_version, "7") >= 0) {
+    $package     = 'php-xdebug'
+  } else {
+    $package     = 'php5-xdebug'
+  }
 }

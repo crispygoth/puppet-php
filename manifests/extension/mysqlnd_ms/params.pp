@@ -1,6 +1,6 @@
-# == Class: php::extension::redis::params
+# == Class: php::extension::mysqlnd_ms::params
 #
-# Defaults file for the redis PHP extension
+# Defaults file for the tidy PHP extension
 #
 # === Parameters
 #
@@ -33,23 +33,20 @@
 # === Authors
 #
 # Christian "Jippi" Winther <jippignu@gmail.com>
+# Goran Miskovic <schkovich@gmail.com>
 #
 # === Copyright
 #
 # Copyright 2012-2015 Christian "Jippi" Winther, unless otherwise noted.
 #
-class php::extension::redis::params {
+class php::extension::mysqlnd_ms::params {
 
   $ensure   = $php::params::ensure
+  $package  = 'mysqlnd_ms'
   $provider = undef
-  $inifile  = "${php::params::config_root_ini}/redis.ini"
+  $inifile  = "${php::params::config_root_ini}/mysqlnd_ms.ini"
   $settings = [
-    'set ".anon/extension" "redis.so"'
+    'set "PHP/extension" "mysqlnd_ms.so"'
   ]
 
-  if (versioncmp($php::params::major_version, "7") >= 0) {
-    $package  = 'php-redis'
-  } else {
-    $package  = 'php5-redis'
-  }
 }

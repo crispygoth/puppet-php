@@ -41,20 +41,26 @@
 class php::fpm::params inherits php::params {
 
   $ensure             = $::php::params::ensure
-  $package            = 'php5-fpm'
+  if (versioncmp($php::params::major_version, "7") >= 0) {
+    $package          = 'php-fpm'
+    $service_name     = 'php7.0-fpm'
+    $pid              = "/run/php/php${php::params::major_version}-fpm.pid"
+    $error_log        = "/var/log/php${php::params::major_version}-fpm.log"
+  } else {
+    $package          = 'php5-fpm'
+    $service_name     = 'php5-fpm'
+    $pid              = '/var/run/php5-fpm.pid'
+    $error_log        = '/var/log/php5-fpm.log'
+  }
   $provider           = undef
-  $inifile            = '/etc/php5/fpm/php.ini'
+  $inifile            = "${php::params::config_root}/fpm/php.ini"
   $settings           = [ ]
-
-  $service_name       = 'php5-fpm'
   $service_ensure     = 'running'
   $service_enable     = true
   $service_has_status = true
   $service_provider   = undef
 
   # default params for php-fpm.conf, ported from php::fpm::daemon
-  $pid                          = '/var/run/php5-fpm.pid'
-  $error_log                    = '/var/log/php5-fpm.log'
   $syslog_facility              = undef
   $syslog_ident                 = undef
   $log_level                    = 'notice'

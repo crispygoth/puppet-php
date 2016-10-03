@@ -41,11 +41,15 @@
 class php::extension::ssh2::params {
 
   $ensure   = $php::params::ensure
-  $package  = 'php5-ssh2'
   $provider = undef
   $inifile  = "${php::params::config_root_ini}/ssh2.ini"
   $settings = [
     'set ".anon/extension" "ssh2.so"'
   ]
 
+  if (versioncmp($php::params::major_version, "7") >= 0) {
+    $package  = 'php-ssh2'
+  } else {
+    $package  = 'php5-ssh2'
+  }
 }

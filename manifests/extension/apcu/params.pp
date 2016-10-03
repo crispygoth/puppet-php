@@ -41,10 +41,15 @@
 class php::extension::apcu::params {
 
   $ensure   = $php::params::ensure
-  $package  = 'php5-apcu'
   $provider = undef
   $inifile  = "${php::params::config_root_ini}/apcu.ini"
   $settings = [
     'set ".anon/extension" "apcu.so"'
   ]
+
+  if (versioncmp($php::params::major_version, "7") >= 0) {
+    $package  = 'php-apcu'
+  } else {
+    $package  = 'php5-apcu'
+  }
 }
