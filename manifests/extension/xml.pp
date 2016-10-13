@@ -46,15 +46,17 @@ class php::extension::xml(
   $settings = $php::extension::xml::params::settings
 ) inherits php::extension::xml::params {
 
-  php::extension { 'xml':
-    ensure   => $ensure,
-    package  => $package,
-    provider => $provider
-  }
+  # The "xml" module is built-in to PHP 5, only needs to be separately installed on 7+
+  if versioncmp($php::params::major_version, "7") >= 0) {
+    php::extension { 'xml':
+      ensure   => $ensure,
+      package  => $package,
+      provider => $provider
+    }
 
-  php::config { 'php-extension-xml':
-    file   => $inifile,
-    config => $settings
+    php::config { 'php-extension-xml':
+      file   => $inifile,
+      config => $settings
+    }
   }
-
 }
