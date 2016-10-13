@@ -39,17 +39,13 @@
 # Copyright 2012-2015 Christian "Jippi" Winther, unless otherwise noted.
 #
 class php::extension::imagick::params {
+  include php::params
 
-  $ensure   = $php::params::ensure
+  $ensure   = $::php::params::ensure
+  $package  = "php${php::params::major_version}-imagick"
   $provider = undef
-  $inifile  = "${php::params::config_root_ini}/imagick.ini"
+  $inifile  = "${::php::params::config_root_ini}/imagick.ini"
   $settings = [
     'set ".anon/extension" "imagick.so"'
   ]
-
-  if (versioncmp($php::params::major_version, "7") >= 0) {
-    $package  = 'php-imagick'
-  } else {
-    $package  = 'php5-imagick'
-  }
 }
