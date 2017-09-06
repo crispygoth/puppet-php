@@ -47,7 +47,7 @@ class php::extension::xml(
 ) inherits php::extension::xml::params {
 
   # The "xml" module is built-in to PHP 5, only needs to be separately installed on 7+
-  if versioncmp($php::params::major_version, "7") >= 0) {
+  if versioncmp($php::params::major_version, "7") >= 0 {
     php::extension { 'xml':
       ensure   => $ensure,
       package  => $package,

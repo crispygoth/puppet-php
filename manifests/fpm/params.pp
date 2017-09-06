@@ -41,9 +41,11 @@
 class php::fpm::params inherits php::params {
 
   $ensure             = $::php::params::ensure
-  if (versioncmp($php::params::major_version, "7") >= 0) {
-    $package          = 'php-fpm'
-    $service_name     = 'php7.0-fpm'
+  if (versioncmp($php::params::major_version, '7') >= 0) {
+    # php-fpm is a metapackage that depends on the default phpX.Y-fpm package
+    # we want to explicitly request the package by version instead
+    $package          = "php${php::params::major_version}-fpm"
+    $service_name     = "php${php::params::major_version}-fpm"
     $pid              = "/run/php/php${php::params::major_version}-fpm.pid"
     $error_log        = "/var/log/php${php::params::major_version}-fpm.log"
   } else {

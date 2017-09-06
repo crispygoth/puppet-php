@@ -38,7 +38,7 @@
 #
 # Copyright 2012-2015 Christian "Jippi" Winther, unless otherwise noted.
 #
-class php::cli::params {
+class php::cli::params inherits php::params {
 
   $ensure   = $php::params::ensure
   $package  = "php${php::params::major_version}-cli"

@@ -47,8 +47,7 @@ class php::extension::memcache::params {
   $settings = [
     'set ".anon/extension" "memcache.so"'
   ]
-  if (versioncmp($php::params::major_version, "7") >= 0) {
-    # Leave alone as there's no php7.0-imagick yet...so we'll have to phpize
+  if (versioncmp($php::params::major_version, '7') >= 0) {
     $package  = 'php-memcache'
   } else {
     $package  = 'php5-memcache'
