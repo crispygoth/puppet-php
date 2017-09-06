@@ -1,6 +1,6 @@
-# == Class: php::cli::params
+# == Class: php::extension::oauth::params
 #
-# Defaults file for CLI package
+# Defaults file for the oauth PHP extension
 #
 # === Parameters
 #
@@ -14,13 +14,13 @@
 #   This matches "ensure" from Package
 #
 # [*package*]
-#   The package name for apache package
+#   The package name in your provider
 #
 # [*provider*]
-#   The provider used to install package
+#   The provider used to install the package
 #
 # [*inifile*]
-#   The path to the ini php5 apache ini file
+#   The path to the extension ini file
 #
 # [*settings*]
 #   Hash with 'set' nested hash of key => value
@@ -36,16 +36,14 @@
 #
 # === Copyright
 #
-# Copyright 2012-2015 Christian "Jippi" Winther, unless otherwise noted.
+# Copyright 2012-2013 Christian "Jippi" Winther, unless otherwise noted.
 #
-class php::cli::params inherits php::params {
+class php::extension::oauth::params {
 
-  include php::params
-  
   $ensure   = $php::params::ensure
-  $package  = "php${php::params::major_version}-cli"
+  $package  = 'php5-oauth'
   $provider = undef
-  $inifile  = "${php::params::config_root}/cli/php.ini"
+  $inifile  = "${php::params::config_root_ini}/oauth.ini"
   $settings = [ ]
 
 }
