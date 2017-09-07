@@ -46,15 +46,17 @@ class php::extension::mailparse(
   $settings = $php::extension::mailparse::params::settings
 ) inherits php::extension::mailparse::params {
 
-  php::extension { 'mailparse':
-    ensure   => $ensure,
-    package  => $package,
-    provider => $provider
-  }
+  # The mailparse module is not packaged for 5, ignore it
+  if versioncmp($php::params::major_version, "7") >= 0 {
+    php::extension { 'mailparse':
+      ensure   => $ensure,
+      package  => $package,
+      provider => $provider
+    }
 
-  php::config { 'php-extension-mailparse':
-    file   => $inifile,
-    config => $settings
+    php::config { 'php-extension-mailparse':
+      file   => $inifile,
+      config => $settings
+    }
   }
-
 }
