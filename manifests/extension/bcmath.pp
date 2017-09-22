@@ -46,15 +46,17 @@ class php::extension::bcmath(
   $settings = $php::extension::bcmath::params::settings
 ) inherits php::extension::bcmath::params {
 
-  php::extension { 'bcmath':
-    ensure   => $ensure,
-    package  => $package,
-    provider => $provider
-  }
+  # The "bcmath" module is built-in to PHP 5, only needs to be separately installed on 7+
+  if versioncmp($php::params::major_version, "7") >= 0 {
+    php::extension { 'bcmath':
+      ensure   => $ensure,
+      package  => $package,
+      provider => $provider
+    }
 
-  php::config { 'php-extension-bcmath':
-    file   => $inifile,
-    config => $settings
+    php::config { 'php-extension-bcmath':
+      file   => $inifile,
+      config => $settings
+    }
   }
-
 }
