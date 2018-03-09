@@ -41,7 +41,7 @@
 class php::apache::params {
 
   $ensure   = $php::params::ensure
-  $package  = 'libapache2-mod-php5'
+  $package  = "libapache2-mod-php${php::params::major_version}"
   $provider = undef
   $inifile  = "${php::params::config_root}/apache2/php.ini"
   $settings = [ ]
